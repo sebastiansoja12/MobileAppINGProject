@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">INGProject</string>
+    <string name="fetched_text_here">Fetched text here</string>
+    <string name="click_me">Click me</string>
+    <string name="back_button">BACK</string>
+    <string name="next_button">NEXT</string>
+    <color name="orange">#e3511b</color>
+    <color name="white">#EEE9E9</color>
+    <color name="red">#F01414</color>
+    <color name="blue">#3838B9</color>
+    <color name="purple">#6600cc</color>
+    <string name="title_activity_maps">Map</string>
+    <string name="go_to_posts">GO TO POSTS!</string>
+
+
+</resources>
