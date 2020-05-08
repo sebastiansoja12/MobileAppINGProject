@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -38,6 +40,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
 init();
         assert pos != null;
         getUsers(pos.getInt("positionUser"));
+
 
     }
 
@@ -71,19 +74,21 @@ init();
 
 
 
-    public void goToMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goToPosts(){
+        Intent intent = new Intent(this, PostsView.class);
         startActivity(intent);
     }
     public void init(){
         setContentView(R.layout.activity_users);
         listView = findViewById(R.id.userView);
         button = findViewById(R.id.backToPosts);
-
+        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.animation1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainActivity();
+                v.startAnimation(animTranslate);
+                goToPosts();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
 
@@ -98,7 +103,12 @@ init();
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
+    
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
 
 }
 

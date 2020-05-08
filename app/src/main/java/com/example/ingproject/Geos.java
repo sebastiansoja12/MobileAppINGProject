@@ -3,6 +3,8 @@ package com.example.ingproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,10 +37,12 @@ public class Geos extends AppCompatActivity {
         listView = findViewById(R.id.photoView);
         imageView=findViewById(R.id.photo);
         button = findViewById(R.id.backToUsers);
+        final Animation animTranslate2 = AnimationUtils.loadAnimation(this, R.anim.animation1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToMainActivity();
+                v.startAnimation(animTranslate2);
+                goToUsers();
             }
         });
         Retrofit retrofit = new Retrofit.Builder()
@@ -61,7 +65,7 @@ public class Geos extends AppCompatActivity {
 
 
 
-    public void goToMainActivity(){
+    public void goToUsers(){
         Intent intent = new Intent(this, Users.class);
         startActivity(intent);
     }

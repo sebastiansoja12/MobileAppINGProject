@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -30,11 +32,13 @@ public class comments extends AppCompatActivity {
         Bundle pos = intent.getExtras();
         assert pos != null;
 
-
+        final Animation animTranslate1 = AnimationUtils.loadAnimation(this, R.anim.animation1);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                v.startAnimation(animTranslate1);
                 backToPosts();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });
 
@@ -73,7 +77,7 @@ Call<Comment[]> commentcall = api.getComments(position);
         listView = findViewById(R.id.commentView);
     }
     public void backToPosts(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, PostsView.class);
         startActivity(intent);
     }
 }
