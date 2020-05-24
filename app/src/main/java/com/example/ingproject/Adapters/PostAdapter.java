@@ -31,6 +31,7 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
     PostsView posts = new PostsView();
     @SuppressLint("StaticFieldLeak")
     static ViewHolder holder;
+    PostsView pv;
 
     public PostAdapter(Context context, Post[] post) {
         this.context = context;

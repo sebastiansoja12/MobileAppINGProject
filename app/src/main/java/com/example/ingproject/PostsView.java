@@ -35,7 +35,7 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
     public static ListView listView;
     private PostAdapter postAdapter;
     private UserAdapter userAdapter;
-    private Context context;
+    public Context context;
     static JSONObject dataobj2;
     private JsonPlaceholderAPI api;
     public static Comment[] commentArray;
@@ -120,7 +120,7 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
                 postArray = response.body();
                 assert postArray != null;
                 postPagination=new Post[z];
-                for (int i=0;i<z;i++){
+                for (int i=x;i<z;i++){
                     postPagination[i]=postArray[i];
                     postAdapter = new PostAdapter(PostsView.this, postPagination);
                     listView.setAdapter(postAdapter);

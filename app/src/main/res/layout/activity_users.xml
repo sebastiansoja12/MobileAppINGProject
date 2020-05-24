@@ -9,13 +9,11 @@
     tools:context=".Users">
 
 
-    <Button
-        android:id="@+id/backToPosts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back_button"
-        android:textColor="#ff7400"
-        android:background="@drawable/button_design"/>
+    <TextView
+        android:id="@+id/usernameID"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="TextView" />
 
     <ListView
         android:id="@+id/userView"

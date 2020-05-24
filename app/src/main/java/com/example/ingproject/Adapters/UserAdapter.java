@@ -25,6 +25,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
     static  Context context;
     public static  User[] user;
     public static int positionUser;
+    public TextView textView;
     public static  ViewHolder holder;
     private static View.OnContextClickListener OnContextClickListener;
 
@@ -75,6 +76,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
             convertView = inflater.inflate(R.layout.retro_user, null, true);
 
            holder.username = (TextView) convertView.findViewById(R.id.username);
+           holder.username= (TextView) convertView.findViewById(R.id.usernameID);
            holder.email = (TextView) convertView.findViewById(R.id.email);
             holder.website = (TextView) convertView.findViewById(R.id.website);
             holder.street = (TextView) convertView.findViewById(R.id.street);
@@ -113,18 +115,20 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
 
 
 
-holder.photos.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-       Intent intent = new Intent(context, Photos.class);
-        intent.putExtra("positionPhoto", user[position].getId());
-        context.startActivity(intent);
-    }
-});
+        holder.photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Intent intent = new Intent(context, Photos.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("positionPhoto", user[position].getId());
+            context.startActivity(intent);
+            }
+        });
         holder.geo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, activity_maps.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("lat", user[position].getAddress().getGeo().getLat());
                 intent.putExtra("lng", user[position].getAddress().getGeo().getLng());
                 intent.putExtra("username", user[position].getUsername());
@@ -132,12 +136,6 @@ holder.photos.setOnClickListener(new View.OnClickListener() {
                 context.startActivity(intent);
             }
         });
-
-
-
-
-
-
         return convertView;
     }
 

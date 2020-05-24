@@ -11,6 +11,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ingproject.Adapters.PostAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
@@ -29,6 +30,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
     public static ListView listView;
     private UserAdapter userAdapter;
     private JsonPlaceholderAPI api;
+    private TextView textView;
     private Context context;
     private int position;
 
@@ -39,7 +41,17 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         Bundle pos = intent.getExtras();
 init();
         assert pos != null;
+        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.animation1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.startAnimation(animTranslate);
+                goToPosts();
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+            }
+        });
         getUsers(pos.getInt("positionUser"));
+
 
 
     }
@@ -49,7 +61,7 @@ init();
                 .baseUrl(JsonPlaceholderAPI.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        api = retrofit.create(JsonPlaceholderAPI.class);
+                api = retrofit.create(JsonPlaceholderAPI.class);
                 Call<User[]> usercall = api.getUser(position);
                 usercall.enqueue(new Callback<User[]>() {
                     @Override
@@ -81,16 +93,7 @@ init();
     public void init(){
         setContentView(R.layout.activity_users);
         listView = findViewById(R.id.userView);
-        button = findViewById(R.id.backToPosts);
-        final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.animation1);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.startAnimation(animTranslate);
-                goToPosts();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-            }
-        });
+        textView = findViewById(R.id.usernameID);
 
     }
 
@@ -103,12 +106,12 @@ init();
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-    
-    @Override
+
+   /* @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
+    }*/
 
 }
 
