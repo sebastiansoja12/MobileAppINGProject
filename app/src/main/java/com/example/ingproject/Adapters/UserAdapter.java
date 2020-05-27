@@ -29,7 +29,6 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
     public static  ViewHolder holder;
     private static View.OnContextClickListener OnContextClickListener;
 
-
     public UserAdapter(Context context, User[] user) {
 
         UserAdapter.context = context;
@@ -75,9 +74,8 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
             assert inflater != null;
             convertView = inflater.inflate(R.layout.retro_user, null, true);
 
-           holder.username = (TextView) convertView.findViewById(R.id.username);
-           holder.username= (TextView) convertView.findViewById(R.id.usernameID);
-           holder.email = (TextView) convertView.findViewById(R.id.email);
+            holder.username = (TextView) convertView.findViewById(R.id.username);
+            holder.email = (TextView) convertView.findViewById(R.id.email);
             holder.website = (TextView) convertView.findViewById(R.id.website);
             holder.street = (TextView) convertView.findViewById(R.id.street);
             holder.city = (TextView) convertView.findViewById(R.id.city);
@@ -124,6 +122,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
             context.startActivity(intent);
             }
         });
+
         holder.geo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +140,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
 
     private class ViewHolder {
 
-        protected TextView username, id, title, body, email, phone, website,street, city, zipcode, geo, photos;
+        protected TextView username,user1, id, title, body, email, phone, website,street, city, zipcode, geo, photos;
     }
     public void onClick(View v){
         Intent intent;

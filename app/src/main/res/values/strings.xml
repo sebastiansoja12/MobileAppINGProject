@@ -11,6 +11,7 @@
     <color name="purple">#6600cc</color>
     <string name="title_activity_maps">Map</string>
     <string name="go_to_posts">GO TO POSTS!</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

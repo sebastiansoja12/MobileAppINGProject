@@ -1,112 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:cardCornerRadius="4dp"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/orange"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/street"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/zipcode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/geo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
+
+            <TextView
+                android:id="@+id/photos"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_weight="10"
+                android:autoLink="all"
+                android:clickable="true"
+                android:text=" " />
 
 
-        android:textColor="@color/orange">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/username"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/email"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/website"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/street"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/city"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/zipcode"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/geo"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:id="@+id/photos"
-            android:text=" "
-            android:clickable="true"
-            android:autoLink="all"
-            />
-
-
-
-    </LinearLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

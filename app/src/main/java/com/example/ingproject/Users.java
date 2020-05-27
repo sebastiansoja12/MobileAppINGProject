@@ -39,7 +39,10 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         Intent intent= getIntent();
         Bundle pos = intent.getExtras();
-init();
+        init();
+
+
+
         assert pos != null;
         final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.animation1);
         button.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +96,8 @@ init();
     public void init(){
         setContentView(R.layout.activity_users);
         listView = findViewById(R.id.userView);
-        textView = findViewById(R.id.usernameID);
-
+        //textView = findViewById(R.id.usernameID);
+        //button = findViewById(R.id.button);
     }
 
     @Override
