@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +33,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
         private JsonPlaceholderAPI api;
         private PhotoAdapter photoAdapter;
         private ImageView imageView;
+        private String username;
+        private TextView textView;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
             Bundle pos = intent.getExtras();
             assert pos != null;
 
-
-
+             username= pos.getString("userUsername");
+           textView.setText(username + "'s Photos");
             getPhotos(pos.getInt("positionPhoto"));
 
         }
@@ -85,7 +88,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 private void init(){
     setContentView(R.layout.activity_photos);
-
+   textView=findViewById(R.id.phot);
     listView = findViewById(R.id.photoView);
     imageView=findViewById(R.id.photo);
     final Animation animTranslate3 = AnimationUtils.loadAnimation(this, R.anim.animation1);

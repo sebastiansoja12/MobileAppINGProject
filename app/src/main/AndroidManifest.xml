@@ -34,7 +34,7 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".Users" />
         <activity android:name=".Photos" />
-        <activity android:name=".comments" />
+        <activity android:name=".Comments" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

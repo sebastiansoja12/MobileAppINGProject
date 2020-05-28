@@ -17,7 +17,6 @@ import com.example.ingproject.R;
 import com.example.ingproject.Models.User;
 import com.example.ingproject.Users;
 import com.example.ingproject.activity_maps;
-import com.example.ingproject.comments;
 
 public class UserAdapter extends BaseAdapter implements View.OnClickListener {
 
@@ -119,6 +118,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
             Intent intent = new Intent(context, Photos.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("positionPhoto", user[position].getId());
+            intent.putExtra("userUsername", user[position].getUsername());
             context.startActivity(intent);
             }
         });

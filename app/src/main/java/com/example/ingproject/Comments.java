@@ -20,10 +20,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class comments extends AppCompatActivity {
+public class Comments extends AppCompatActivity {
     private JsonPlaceholderAPI api;
     private Button back;
     private ListView listView;
+    private TextView textView;
+    private Integer id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,8 @@ public class comments extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
         });*/
-
+      id=pos.getInt("positionComment");
+      textView.setText("Comments of post with id " + id );
         getComments(pos.getInt("positionComment"));
 
     }
@@ -60,7 +63,7 @@ Call<Comment[]> commentcall = api.getComments(position);
             @Override
             public void onResponse(Call<Comment[]> call, Response<Comment[]> response) {
                 Comment[] commentArray = response.body();
-                CommentAdapter commentAdapter = new CommentAdapter(comments.this,commentArray);
+                CommentAdapter commentAdapter = new CommentAdapter(Comments.this,commentArray);
                 listView.setAdapter(commentAdapter);
             }
 
@@ -75,6 +78,7 @@ Call<Comment[]> commentcall = api.getComments(position);
     private void init(){
         setContentView(R.layout.activity_comments);
         listView = findViewById(R.id.commentView);
+        textView=findViewById(R.id.tops);
     }
    /* public void backToPosts(){
         Intent intent = new Intent(this, PostsView.class);

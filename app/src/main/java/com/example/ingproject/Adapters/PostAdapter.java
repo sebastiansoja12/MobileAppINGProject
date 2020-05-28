@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.ingproject.Comments;
 import com.example.ingproject.Models.Post;
 import com.example.ingproject.PostsView;
 import com.example.ingproject.R;
 import com.example.ingproject.Users;
-import com.example.ingproject.ViewHolder.ViewHolder;
-import com.example.ingproject.comments;
 
 public class PostAdapter extends BaseAdapter implements View.OnClickListener{
 
@@ -93,7 +92,7 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
                     holder.username.setText(" " + UserAdapter.user[i].getUsername()+"\n");
                     holder.title.setText(" " + post[position].getTitle()+ "\n");
                     holder.body.setText(" " + post[position].getBody()+ "\n");
-                    holder.comment.setText("Comments: 5"+ "\n" );
+                    holder.comment.setText("Click here to view comments"+ "\n" );
                 }
            }
 
@@ -108,8 +107,9 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, comments.class);
+                Intent intent = new Intent(context, Comments.class);
                 intent.putExtra("positionComment", post[position].getId());
+
                 context.startActivity(intent);
             }
         });
@@ -130,7 +130,7 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
    public void onClick(View v){
        Intent intent;
        if (v.getId() == R.id.comment) {
-           intent = new Intent(context, comments.class);
+           intent = new Intent(context, Comments.class);
            context.startActivity(intent);
        }else if(v.getId()==R.id.username){
            intent = new Intent(context, Users.class);

@@ -60,4 +60,11 @@ private Integer id;
     public void setBody(String body) {
         this.body = body;
     }
+
+    public Post(Integer userId, Integer id, String title, String body) {
+        this.userId = userId;
+        this.id = id;
+        this.title = title;
+        this.body = body;
+    }
 }

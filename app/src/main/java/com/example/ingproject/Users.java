@@ -33,6 +33,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
     private TextView textView;
     private Context context;
     private int position;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +97,7 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
     public void init(){
         setContentView(R.layout.activity_users);
         listView = findViewById(R.id.userView);
-        //textView = findViewById(R.id.usernameID);
+        textView = findViewById(R.id.usr);
         //button = findViewById(R.id.button);
     }
 
