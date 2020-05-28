@@ -90,10 +90,10 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
 
             for (int i=0;i<userAdapter.getCount();i++) {
                 if (post[position].getUserId()== UserAdapter.user[i].getId()) {
-                    holder.username.setText(" " + UserAdapter.user[i].getUsername());
-                    holder.title.setText(" " + post[position].getTitle());
-                    holder.body.setText(" " + post[position].getBody());
-                    holder.comment.setText("Comments: 5" );
+                    holder.username.setText(" " + UserAdapter.user[i].getUsername()+"\n");
+                    holder.title.setText(" " + post[position].getTitle()+ "\n");
+                    holder.body.setText(" " + post[position].getBody()+ "\n");
+                    holder.comment.setText("Comments: 5"+ "\n" );
                 }
            }
 
@@ -103,8 +103,6 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
                    Intent intent = new Intent(context, Users.class);
                    intent.putExtra("positionUser", post[position].getUserId());
                    context.startActivity(intent);
-
-
             }
         });
         holder.comment.setOnClickListener(new View.OnClickListener() {
@@ -122,17 +120,20 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
     }
 
 
-   /* private class ViewHolder {
+    private class ViewHolder {
 
         protected TextView id, username, comment, title, body;
 
-    }*/
+    }
 
    @SuppressLint("SetTextI18n")
    public void onClick(View v){
        Intent intent;
        if (v.getId() == R.id.comment) {
            intent = new Intent(context, comments.class);
+           context.startActivity(intent);
+       }else if(v.getId()==R.id.username){
+           intent = new Intent(context, Users.class);
            context.startActivity(intent);
        }
    }

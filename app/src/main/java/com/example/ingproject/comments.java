@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.ingproject.Adapters.CommentAdapter;
 import com.example.ingproject.Models.Comment;
@@ -33,14 +34,14 @@ public class comments extends AppCompatActivity {
         assert pos != null;
 
         final Animation animTranslate1 = AnimationUtils.loadAnimation(this, R.anim.animation1);
-        back.setOnClickListener(new View.OnClickListener() {
+       /* back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.startAnimation(animTranslate1);
-                backToPosts();
+                //backToPosts();
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
-        });
+        });*/
 
         getComments(pos.getInt("positionComment"));
 
@@ -73,11 +74,15 @@ Call<Comment[]> commentcall = api.getComments(position);
     }
     private void init(){
         setContentView(R.layout.activity_comments);
-        back = findViewById(R.id.backButton);
         listView = findViewById(R.id.commentView);
     }
-    public void backToPosts(){
+   /* public void backToPosts(){
         Intent intent = new Intent(this, PostsView.class);
         startActivity(intent);
-    }
+    }*/
+   /*@Override
+   public void finish() {
+       super.finish();
+       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+   }*/
 }

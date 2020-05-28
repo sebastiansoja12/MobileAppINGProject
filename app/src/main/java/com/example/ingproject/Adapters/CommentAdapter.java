@@ -15,6 +15,9 @@ import com.example.ingproject.ViewHolder.ViewHolder;
 public class CommentAdapter extends BaseAdapter {
     public static Context context;
     public static Comment[] comment;
+    public TextView textView;
+
+
     public CommentAdapter(Context context,  Comment[] comment){
         this.context=context;
         this.comment=comment;
@@ -48,13 +51,13 @@ public class CommentAdapter extends BaseAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public View getView( int position, View convertView, ViewGroup parent) {
-             ViewHolder holder;
-
+        ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.retro_comment, null, true);
+
             holder.id = (TextView) convertView.findViewById(R.id.email);
             holder.title = (TextView) convertView.findViewById(R.id.name);
             holder.body = (TextView) convertView.findViewById(R.id.body);
@@ -62,9 +65,9 @@ public class CommentAdapter extends BaseAdapter {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.id.setText("E-mail: " + comment[position].getEmail());
-        holder.title.setText("Name: " + comment[position].getName());
-        holder.body.setText("Body: " + comment[position].getBody());
+        holder.id.setText(comment[position].getEmail() + "\n");
+        holder.title.setText(comment[position].getName() + "\n");
+        holder.body.setText(comment[position].getBody() + "\n");
 
 
 

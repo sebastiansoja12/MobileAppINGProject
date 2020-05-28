@@ -45,14 +45,14 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
 
         assert pos != null;
         final Animation animTranslate = AnimationUtils.loadAnimation(this, R.anim.animation1);
-        button.setOnClickListener(new View.OnClickListener() {
+       /* button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 v.startAnimation(animTranslate);
                 goToPosts();
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
             }
-        });
+        });*/
         getUsers(pos.getInt("positionUser"));
 
 
@@ -110,11 +110,11 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
 
     }
 
-   /* @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }*/
+  /*@Override
+   public void finish() {
+       super.finish();
+       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+   }*/
 
 }
 

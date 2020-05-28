@@ -102,14 +102,14 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
         }
 
 
-        holder.username.setText("Username: "+user[position].getUsername());
-        holder.email.setText("Email: "+ user[position].getEmail());
-        holder.website.setText("Website: " + user[position].getWebsite());
-        holder.street.setText("Street: " + user[position].getAddress().getStreet());
-        holder.city.setText("City: " + user[position].getAddress().getCity());
-        holder.zipcode.setText("Zipcode: " + user[position].getAddress().getZipcode());
-        holder.geo.setText("Geo: " + "Lat: " + user[position].getAddress().getGeo().getLat() +  " Lng: " +user[position].getAddress().getGeo().getLng());
-        holder.photos.setText("" + user[position].getUsername() + "'s photos");
+        holder.username.setText(user[position].getUsername() + "\n");
+        holder.email.setText(user[position].getEmail() + "\n");
+        holder.website.setText(user[position].getWebsite() + "\n");
+        holder.street.setText(user[position].getAddress().getStreet() + "\n");
+        holder.city.setText(user[position].getAddress().getCity()+ "\n");
+        holder.zipcode.setText(user[position].getAddress().getZipcode()+ "\n");
+        holder.geo.setText(user[position].getAddress().getGeo().getLat() +  "; " +user[position].getAddress().getGeo().getLng()+ "\n");
+        holder.photos.setText( user[position].getUsername() + "'s photos");
 
 
 

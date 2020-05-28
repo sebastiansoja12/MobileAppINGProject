@@ -65,9 +65,6 @@ public class PhotoAdapter extends BaseAdapter {
             assert inflater != null;
             convertView = inflater.inflate(R.layout.retro_photo, null, true);
 
-            holder.id = (TextView) convertView.findViewById(R.id.id);
-            holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.albumId = (TextView) convertView.findViewById(R.id.albumId);
             holder.iv = (ImageView) convertView.findViewById(R.id.photo);
 
 
@@ -83,9 +80,6 @@ public class PhotoAdapter extends BaseAdapter {
         for (int i=0;i<userAdapter.getCount();i++){
             if(photo[i].getAlbumId() == AlbumAdapter.album[i].getId()){
                 Picasso.get().load(photo[position].getUrl()).into(holder.iv);
-                holder.id.setText("ID: "+photo[position].getId());
-                holder.title.setText("Title: "+photo[position].getTitle());
-                holder.albumId.setText("Album ID: "+photo[position].getAlbumId());
             }
 
         }

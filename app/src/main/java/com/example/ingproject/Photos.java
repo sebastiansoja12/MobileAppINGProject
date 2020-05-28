@@ -88,16 +88,7 @@ private void init(){
 
     listView = findViewById(R.id.photoView);
     imageView=findViewById(R.id.photo);
-    button = findViewById(R.id.backToUsers);
     final Animation animTranslate3 = AnimationUtils.loadAnimation(this, R.anim.animation1);
-    button.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            v.startAnimation(animTranslate3);
-            goToUsers();
-            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-        }
-    });
 }
         public void goToUsers(){
             Intent intent = new Intent(this, Users.class);

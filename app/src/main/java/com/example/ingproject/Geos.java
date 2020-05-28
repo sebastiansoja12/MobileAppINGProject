@@ -36,7 +36,6 @@ public class Geos extends AppCompatActivity {
 
         listView = findViewById(R.id.photoView);
         imageView=findViewById(R.id.photo);
-        button = findViewById(R.id.backToUsers);
         final Animation animTranslate2 = AnimationUtils.loadAnimation(this, R.anim.animation1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
