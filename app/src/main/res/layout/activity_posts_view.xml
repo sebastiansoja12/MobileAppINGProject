@@ -12,29 +12,32 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textColor="@color/orange"
+            android:background="@drawable/button_design"
             android:text="@string/back_button"
             />
 
         <TextView
             android:id="@+id/pageNumber"
-            android:layout_width="wrap_content"
+            android:layout_width="238dp"
             android:layout_height="match_parent"
-            android:text="PAGE 1"
-            android:textAlignment="center"
-            android:textColor="@color/red"/>
+            android:layout_gravity="center"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/nextButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:background="@drawable/button_design"
             android:text="@string/next_button"
-            />
+            android:textColor="@color/orange" />
+
     </LinearLayout>
 
     <ListView
