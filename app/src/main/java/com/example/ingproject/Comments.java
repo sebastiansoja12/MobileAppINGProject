@@ -2,6 +2,7 @@ package com.example.ingproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -51,17 +52,24 @@ public class Comments extends AppCompatActivity {
     }
 
    private void getComments(int position){
+       final ProgressDialog nDialog;
+       nDialog = new ProgressDialog(this);
+       nDialog.setMessage("Loading..");
+       nDialog.setIndeterminate(false);
+       nDialog.setCancelable(true);
+       nDialog.show();
        Retrofit retrofit = new Retrofit.Builder()
                .baseUrl(JsonPlaceholderAPI.URL)
                .addConverterFactory(GsonConverterFactory.create())
                .build();
 
        api = retrofit.create(JsonPlaceholderAPI.class);
-Call<Comment[]> commentcall = api.getComments(position);
+        Call<Comment[]> commentcall = api.getComments(position);
 
         commentcall.enqueue(new Callback<Comment[]>() {
             @Override
             public void onResponse(Call<Comment[]> call, Response<Comment[]> response) {
+                nDialog.dismiss();
                 Comment[] commentArray = response.body();
                 CommentAdapter commentAdapter = new CommentAdapter(Comments.this,commentArray);
                 listView.setAdapter(commentAdapter);

@@ -1,6 +1,7 @@
 package com.example.ingproject;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -109,13 +110,19 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
 
     }
     private void getPosts(){
-
+        final ProgressDialog nDialog;
+        nDialog = new ProgressDialog(this);
+        nDialog.setMessage("Loading..");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
         Call<Post[]> postcall = api.getPosts();
 
 
         postcall.enqueue(new Callback<Post[]>() {
             @Override
             public void onResponse(Call<Post[]> call, Response<Post[]> response) {
+                nDialog.dismiss();
                 postArray = response.body();
                 assert postArray != null;
                 postPagination=new Post[10];

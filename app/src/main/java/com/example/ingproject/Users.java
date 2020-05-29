@@ -2,6 +2,7 @@ package com.example.ingproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -61,18 +62,29 @@ public class Users extends AppCompatActivity implements View.OnClickListener {
     }
 
     public void getUsers(int position){
+        final ProgressDialog nDialog;
+        nDialog = new ProgressDialog(this);
+        nDialog.setMessage("Loading..");
+        nDialog.setIndeterminate(false);
+        nDialog.setCancelable(true);
+        nDialog.show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(JsonPlaceholderAPI.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
                 api = retrofit.create(JsonPlaceholderAPI.class);
                 Call<User[]> usercall = api.getUser(position);
+
+
+
+
                 usercall.enqueue(new Callback<User[]>() {
                     @Override
                     public void onResponse(Call<User[]> call, Response<User[]> response) {
                         assert response.body() != null;
                         User[] userArray = response.body();
                         userAdapter = new UserAdapter(getBaseContext(), userArray);
+                        nDialog.dismiss();
                         listView.setAdapter(userAdapter);
                     }
 

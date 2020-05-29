@@ -1,5 +1,6 @@
 package com.example.ingproject;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -54,7 +55,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
         private void getPhotos(int position){
-
+            final ProgressDialog nDialog;
+            nDialog = new ProgressDialog(this);
+            nDialog.setMessage("Loading..");
+            nDialog.setIndeterminate(false);
+            nDialog.setCancelable(true);
+            nDialog.show();
 
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(JsonPlaceholderAPI.URL)
@@ -68,6 +74,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
             photocall.enqueue(new Callback<Photo[]>() {
                 @Override
                 public void onResponse(Call<Photo[]> call, Response<Photo[]> response) {
+                    nDialog.dismiss();
                     Photo[] photoArray= response.body();
                     photoAdapter= new PhotoAdapter(Photos.this, photoArray);
                     listView.setAdapter(photoAdapter);
