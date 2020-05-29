@@ -3,6 +3,7 @@ package com.example.ingproject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,6 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
     public static Post[] postArray, postPagination;
     LayoutInflater layoutInflater;
     private Button button;
-    public int z =10;
-    public int x=z-10;
 
 
 
@@ -80,7 +79,7 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
         api = retrofit.create(JsonPlaceholderAPI.class);
 
 
-        getPosts(z);
+        getPosts();
         getUsers();
         getAlbums();
 
@@ -109,7 +108,7 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
         });
 
     }
-    private void getPosts(final int z){
+    private void getPosts(){
 
         Call<Post[]> postcall = api.getPosts();
 
@@ -119,12 +118,13 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
             public void onResponse(Call<Post[]> call, Response<Post[]> response) {
                 postArray = response.body();
                 assert postArray != null;
-                postPagination=new Post[z];
-                for (int i=x;i<z;i++){
-                    postPagination[i]=postArray[i];
-                    postAdapter = new PostAdapter(PostsView.this, postPagination);
-                    listView.setAdapter(postAdapter);
+                postPagination=new Post[10];
+                for (int i=(page-1)*10;i<(page*10);i++){
+                    postPagination[i-((page-1)*10)]=postArray[i];
+
                 }
+                postAdapter = new PostAdapter(PostsView.this, postPagination);
+                listView.setAdapter(postAdapter);
 
             }
             @Override
@@ -159,9 +159,8 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
         switch (v.getId()){
             case R.id.nextButton:
                 page++;
-                z+=10;
 
-                getPosts(z);
+                getPosts();
                 pageView.setText("PAGE " + page);
 
                 if(page>1){
@@ -174,9 +173,8 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
 
             case R.id.backButton:
                 page--;
-                z-=10;
 
-                getPosts(z);
+                getPosts();
                 pageView.setText("PAGE " + page);
                 if(page == 10){
                     next.setVisibility(View.INVISIBLE);
