@@ -1,4 +1,4 @@
-package com.example.ingproject;
+package com.example.ingproject.API;
 
 import com.example.ingproject.Models.Comment;
 import com.example.ingproject.Models.Photo;

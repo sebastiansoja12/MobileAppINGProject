@@ -10,29 +10,26 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.ingproject.Comments;
+import com.example.ingproject.Contracts.PostContract;
+import com.example.ingproject.Models.User;
+import com.example.ingproject.Views.Comments;
 import com.example.ingproject.Models.Post;
-import com.example.ingproject.PostsView;
+import com.example.ingproject.Views.PostsView;
 import com.example.ingproject.R;
-import com.example.ingproject.Users;
+import com.example.ingproject.Views.Users;
 
-public class PostAdapter extends BaseAdapter implements View.OnClickListener{
+public class PostAdapter extends UserAdapter {
 
-
+    private PostContract.MainView mainView;
+    private PostContract.GetPostIntractor getNoticeIntractor;
     public static Context context;
     public static Post[] post;
-    public TextView id;
-    @SuppressLint("StaticFieldLeak")
-    public static TextView username;
-    public TextView comment;
-    public TextView title;
-    public TextView body;
-    PostsView posts = new PostsView();
-    @SuppressLint("StaticFieldLeak")
+
     static ViewHolder holder;
-    PostsView pv;
+
 
     public PostAdapter(Context context, Post[] post) {
+        super(context, user);
         this.context = context;
         this.post = post;
     }
@@ -84,17 +81,17 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
             // the getTag returns the viewHolder object set as a tag to the view
             holder = (ViewHolder) convertView.getTag();
         }
-        UserAdapter userAdapter = new UserAdapter(UserAdapter.context, PostsView.userArray);
+
+        for(int i=0;i<user.length;i++){
+            if (post[position].getUserId()== user[i].getId()) {
+                holder.username.setText(" " + user[i].getUsername()+"\n");
+                holder.title.setText(" " + post[position].getTitle()+ "\n");
+                holder.body.setText(" " + post[position].getBody()+ "\n");
+                holder.comment.setText("Click here to view comments"+ "\n" );
+            }
+        }
 
 
-            for (int i=0;i<userAdapter.getCount();i++) {
-                if (post[position].getUserId()== UserAdapter.user[i].getId()) {
-                    holder.username.setText(" " + UserAdapter.user[i].getUsername()+"\n");
-                    holder.title.setText(" " + post[position].getTitle()+ "\n");
-                    holder.body.setText(" " + post[position].getBody()+ "\n");
-                    holder.comment.setText("Click here to view comments"+ "\n" );
-                }
-           }
 
         holder.username.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,11 +110,9 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
                 context.startActivity(intent);
             }
         });
-
-
-
         return convertView;
     }
+
 
 
     private class ViewHolder {
@@ -126,15 +121,4 @@ public class PostAdapter extends BaseAdapter implements View.OnClickListener{
 
     }
 
-   @SuppressLint("SetTextI18n")
-   public void onClick(View v){
-       Intent intent;
-       if (v.getId() == R.id.comment) {
-           intent = new Intent(context, Comments.class);
-           context.startActivity(intent);
-       }else if(v.getId()==R.id.username){
-           intent = new Intent(context, Users.class);
-           context.startActivity(intent);
-       }
-   }
 }

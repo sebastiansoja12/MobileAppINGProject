@@ -1,9 +1,8 @@
-package com.example.ingproject;
+package com.example.ingproject.Views;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -15,8 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ingproject.Adapters.PhotoAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
+import com.example.ingproject.API.JsonPlaceholderAPI;
 import com.example.ingproject.Models.Photo;
-import com.example.ingproject.Models.User;
+import com.example.ingproject.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;

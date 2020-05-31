@@ -41,7 +41,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'org.jetbrains:annotations-java5:15.0'
+    testCompile 'com.squareup.assertj:assertj-android:1.1.0'
+    testCompile 'org.robolectric:robolectric:3.0'
+
+    testCompile 'org.mockito:mockito-all:1.10.19'
+    testCompile 'net.javacrumbs.json-unit:json-unit-fluent:1.5.6'
 
     implementation 'me.spark:submitbutton:1.0.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter'
 }

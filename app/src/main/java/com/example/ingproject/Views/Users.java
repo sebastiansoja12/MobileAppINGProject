@@ -1,11 +1,10 @@
-package com.example.ingproject;
+package com.example.ingproject.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,12 +13,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.ingproject.Adapters.PostAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
+import com.example.ingproject.API.JsonPlaceholderAPI;
 import com.example.ingproject.Models.User;
+import com.example.ingproject.R;
 
 import retrofit2.Call;
-import retrofit2.CallAdapter;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;

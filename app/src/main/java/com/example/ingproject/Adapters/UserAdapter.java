@@ -1,7 +1,6 @@
 package com.example.ingproject.Adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,17 +10,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.ingproject.Geos;
-import com.example.ingproject.Photos;
+import com.example.ingproject.Views.Geos;
+import com.example.ingproject.Views.Photos;
 import com.example.ingproject.R;
 import com.example.ingproject.Models.User;
-import com.example.ingproject.Users;
-import com.example.ingproject.activity_maps;
+import com.example.ingproject.Views.activity_maps;
 
 public class UserAdapter extends BaseAdapter implements View.OnClickListener {
 
     @SuppressLint("StaticFieldLeak")
-    static  Context context;
+  public  static  Context context;
     public static  User[] user;
     public static int positionUser;
     public TextView textView;
@@ -145,18 +143,7 @@ public class UserAdapter extends BaseAdapter implements View.OnClickListener {
     public void onClick(View v){
         Intent intent;
         View convertView = null;
-        switch (v.getId()){
-            case R.id.photos:
-                intent = new Intent(context, Photos.class);
-                context.startActivity(intent);
 
-                break;
-
-            case R.id.geo:
-                intent = new Intent(context, Geos.class);
-                context.startActivity(intent);
-                break;
-        }
     }
 
 }

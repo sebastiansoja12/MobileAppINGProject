@@ -1,4 +1,4 @@
-package com.example.ingproject;
+package com.example.ingproject.Views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ingproject.Adapters.PhotoAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
-import com.example.ingproject.Models.Photo;
+import com.example.ingproject.API.JsonPlaceholderAPI;
+import com.example.ingproject.R;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

@@ -1,14 +1,9 @@
-package com.example.ingproject;
+package com.example.ingproject.Views;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ingproject.Adapters.AlbumAdapter;
 import com.example.ingproject.Adapters.PostAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
+import com.example.ingproject.API.JsonPlaceholderAPI;
 import com.example.ingproject.Models.Comment;
 import com.example.ingproject.Models.Post;
 import com.example.ingproject.Models.User;
 import com.example.ingproject.Models.Album;
+import com.example.ingproject.R;
 
 
 import org.json.JSONObject;
@@ -32,7 +29,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PostsView extends AppCompatActivity implements View.OnClickListener {
+public class PostsView extends AppCompatActivity {
 
     public static ListView listView;
     private PostAdapter postAdapter;
@@ -47,7 +44,6 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
     private TextView pageView;
     public int page = 1;
     public static Post[] postArray, postPagination;
-    LayoutInflater layoutInflater;
     private Button button;
 
 
@@ -62,15 +58,44 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
         pageView = findViewById(R.id.pageNumber);
         next = findViewById(R.id.nextButton);
         back = findViewById(R.id.backButton);
-        next.setOnClickListener(this);
-        back.setOnClickListener(this);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page++;
+
+                getPosts();
+                pageView.setText("PAGE " + page);
+
+                if(page>1){
+                    back.setVisibility(View.VISIBLE);
+                }
+                if(page == 10){
+                    next.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                page--;
+
+                getPosts();
+                pageView.setText("PAGE " + page);
+                if(page == 10){
+                    next.setVisibility(View.INVISIBLE);
+                }else if(page==1){
+                    back.setVisibility(View.INVISIBLE);
+
+                } else{
+                    next.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         if(page ==1){
             back.setVisibility(View.INVISIBLE);
         }else if(page ==10){
             next.setVisibility(View.INVISIBLE);
         }
-        layoutInflater = LayoutInflater.from(getApplicationContext());
-
         pageView.setText("PAGE " + page);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -78,8 +103,6 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         api = retrofit.create(JsonPlaceholderAPI.class);
-
-
         getPosts();
         getUsers();
         getAlbums();
@@ -110,29 +133,14 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
 
     }
     private void getPosts(){
-        final ProgressDialog nDialog;
-        nDialog = new ProgressDialog(this);
-        nDialog.setMessage("Loading..");
-        nDialog.setIndeterminate(false);
-        nDialog.setCancelable(true);
-        nDialog.show();
         Call<Post[]> postcall = api.getPosts();
 
 
         postcall.enqueue(new Callback<Post[]>() {
             @Override
             public void onResponse(Call<Post[]> call, Response<Post[]> response) {
-                nDialog.dismiss();
                 postArray = response.body();
-                assert postArray != null;
-                postPagination=new Post[10];
-                for (int i=(page-1)*10;i<(page*10);i++){
-                    postPagination[i-((page-1)*10)]=postArray[i];
-
-                }
-                postAdapter = new PostAdapter(PostsView.this, postPagination);
-                listView.setAdapter(postAdapter);
-
+                postAdapter = new PostAdapter(PostsView.this, postArray);
             }
             @Override
             public void onFailure(Call<Post[]> call, Throwable t) {
@@ -161,45 +169,10 @@ public class PostsView extends AppCompatActivity implements View.OnClickListener
     }
 
 
-
-    public void onClick(View v){
-        switch (v.getId()){
-            case R.id.nextButton:
-                page++;
-
-                getPosts();
-                pageView.setText("PAGE " + page);
-
-                if(page>1){
-                    back.setVisibility(View.VISIBLE);
-                }
-                if(page == 10){
-                    next.setVisibility(View.INVISIBLE);
-                }
-                break;
-
-            case R.id.backButton:
-                page--;
-
-                getPosts();
-                pageView.setText("PAGE " + page);
-                if(page == 10){
-                    next.setVisibility(View.INVISIBLE);
-                }else if(page==1){
-                    back.setVisibility(View.INVISIBLE);
-
-                } else{
-                    next.setVisibility(View.VISIBLE);
-                }
-                break;
-
-
-        }
-    }
-
     @Override
     public void finish() {
         super.finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
 }

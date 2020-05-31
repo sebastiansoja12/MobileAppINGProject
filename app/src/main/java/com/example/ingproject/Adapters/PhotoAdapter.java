@@ -10,16 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ingproject.Models.Photo;
-import com.example.ingproject.PostsView;
+import com.example.ingproject.Views.PostsView;
 import com.example.ingproject.R;
 import com.squareup.picasso.Picasso;
 
-public class PhotoAdapter extends BaseAdapter {
+public class PhotoAdapter extends AlbumAdapter {
     @SuppressLint("StaticFieldLeak")
     private Context context;
    private Photo[] photo;
 
     public PhotoAdapter(Context context, Photo[] photo) {
+        super(context, album);
 
         this.context = context;
         this.photo = photo;
@@ -74,11 +75,10 @@ public class PhotoAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        UserAdapter userAdapter = new UserAdapter(UserAdapter.context, PostsView.userArray);
 
 
-        for (int i=0;i<userAdapter.getCount();i++){
-            if(photo[i].getAlbumId() == AlbumAdapter.album[i].getId()){
+        for (int i=0;i<UserAdapter.user.length;i++){
+            if(photo[i].getAlbumId() == album[i].getId()){
                 Picasso.get().load(photo[position].getUrl()).into(holder.iv);
             }
 
