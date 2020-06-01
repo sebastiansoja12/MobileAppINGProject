@@ -30,8 +30,8 @@ public class PostAdapter extends UserAdapter {
 
     public PostAdapter(Context context, Post[] post) {
         super(context, user);
-        this.context = context;
-        this.post = post;
+        PostAdapter.context = context;
+        PostAdapter.post = post;
     }
 
 
@@ -82,12 +82,12 @@ public class PostAdapter extends UserAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        for(int i=0;i<user.length;i++){
-            if (post[position].getUserId()== user[i].getId()) {
-                holder.username.setText(" " + user[i].getUsername()+"\n");
-                holder.title.setText(" " + post[position].getTitle()+ "\n");
-                holder.body.setText(" " + post[position].getBody()+ "\n");
-                holder.comment.setText("Click here to view comments"+ "\n" );
+        for (User value : user) {
+            if (post[position].getUserId() == value.getId()) {
+                holder.username.setText(" " + value.getUsername() + "\n");
+                holder.title.setText(" " + post[position].getTitle() + "\n");
+                holder.body.setText(" " + post[position].getBody() + "\n");
+                holder.comment.setText("Click here to view comments" + "\n");
             }
         }
 

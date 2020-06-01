@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ingproject.Adapters.AlbumAdapter;
 import com.example.ingproject.Adapters.PhotoAdapter;
 import com.example.ingproject.Adapters.UserAdapter;
 import com.example.ingproject.API.JsonPlaceholderAPI;
+import com.example.ingproject.Models.Album;
 import com.example.ingproject.Models.Photo;
 import com.example.ingproject.R;
 
@@ -67,7 +69,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
             api = retrofit.create(JsonPlaceholderAPI.class);
-
+            getAlbums();
 
             Call<Photo[]> photocall = api.getPhotos(position);
 
@@ -91,7 +93,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
         }
 
 
+private void getAlbums(){
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(JsonPlaceholderAPI.URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    api = retrofit.create(JsonPlaceholderAPI.class);
+    Call<Album[]> albumcall = api.getAlbums();
+    albumcall.enqueue(new Callback<Album[]>() {
+        @Override
+        public void onResponse(Call<Album[]> call, Response<Album[]> response) {
+            Album[] albumArray = response.body();
+            AlbumAdapter  albumAdapter = new AlbumAdapter(Photos.this, albumArray);
+        }
 
+        @Override
+        public void onFailure(Call<Album[]> call, Throwable t) {
+
+        }
+    });
+
+}
 
 private void init(){
     setContentView(R.layout.activity_photos);
